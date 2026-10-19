@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "River Crossing Puzzle";
+}
+
+<link rel="stylesheet" href="~/Content/game.css" />
+
+<div class="game">
+    <h1>River Crossing Puzzle</h1>
+    <p class="sub">
+        Get the farmer, fox, chicken and corn from the east bank to the west bank.
+        The boat holds the farmer plus at most one passenger.
+    </p>
+
+    <div class="scene">
+        <section class="bank" id="bank-East">
+            <h2>East bank</h2>
+            <div class="slots"></div>
+        </section>
+
+        <div class="river">
+            <div class="boat at-east" id="boat">
+                <img class="hull" src="~/Images/boat.png" alt="Boat" />
+                <div class="boat-slots">
+                    <div class="boat-slot" id="slotFarmer"></div>
+                    <div class="boat-slot" id="slotPassenger"></div>
+                </div>
+            </div>
+        </div>
+
+        <section class="bank" id="bank-West">
+            <h2>West bank</h2>
+            <div class="slots"></div>
+        </section>
+    </div>
+
+    <div class="controls">
+        <button id="rowBtn" type="button">Row across</button>
+        <button id="resetBtn" type="button" class="secondary">New game</button>
+        <span class="meta" id="meta"></span>
+    </div>
+
+    <div id="message" role="status"></div>
+    <p class="sub tip">
+        Tip: click the fox, chicken or corn on the farmer's bank to put it on the boat
+        (click it again on the boat to take it off), then press "Row across".
+        Only the farmer can row, so he is always on the boat.
+    </p>
+</div>
+
+@section Scripts {
+    <script>
+        window.gameUrls = {
+            newGame: '@Url.Action("NewGame", "Game")',
+            move: '@Url.Action("Move", "Game")',
+            images: '@Url.Content("~/Images/")'
+        };
+    </script>
+    <script src="~/Scripts/game.js"></script>
+}
